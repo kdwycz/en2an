@@ -1,21 +1,24 @@
-# en2an: Chinese Numerals To Arabic Numerals
+# en2an: English Numerals To Arabic Numerals
 
 [![Pypi](https://img.shields.io/pypi/v/en2an.svg)](https://pypi.org/project/en2an/)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/Ailln/en2an/blob/master/LICENSE)
 [![stars](https://img.shields.io/github/stars/Ailln/en2an.svg)](https://github.com/Ailln/en2an/stargazers)
+[![build](https://github.com/Ailln/en2an/workflows/build/badge.svg)](https://github.com/Ailln/cn2an/actions?query=workflow%3Abuild)
 [![API](https://img.shields.io/badge/API-reference-pink.svg)](https://github.com/Ailln/en2an/wiki/API)
 
 📦 **`en2an`** 是一个快速转化 `英文数字` 和 `阿拉伯数字` 的工具包！
+
+> 🎈 该项目正在收集需求中，欢迎在 [Issue: 需求收集](https://github.com/Ailln/en2an/issues/1) 中与我们讨论！
 
 ## 1 功能
 
 ### 1.1 `英文数字` => `阿拉伯数字`
 
-### 1.2 `阿拉伯数字` => `英文数字`
+### 1.2 `阿拉伯数字` => `英文数字`（开发中）
 
-### 1.3 句子转化（试验性功能）
+### 1.3 句子转化（试验性功能）（开发中）
 
-### 1.4 其他
+### 1.4 其他（开发中）
 
 - 支持小数
 - 支持负数
@@ -47,13 +50,27 @@ import en2an
 
 # 查看版本
 print(en2an.__version__)
-# 0.0.1
+# 0.0.3
+```
+
+### 3.1 `英文数字` => `阿拉伯数字`
+
+> 最大支持到`hundred trillion`（百兆），即`10**14`。
+
+```python
+import en2an
+
+# 在 strict 模式（默认）下，只有严格符合数字拼写的才可以进行转化
+output = en2an.en2an("one hundred and twenty-three")
+# or output = en2an.en2an("one hundred and twenty-three", "strict")
+print(output)
+# 123
 ```
 
 ## 4 版本支持
 
 - 理论上支持 `Windows`、`MacOS`、`Ubuntu` 下的所有 `Python 3.6+` 的版本。
-- 实际上仅在 `Windows 10`、`MacOS 10.14`、`Ubuntu 16.04` 的 `Python 3.6.9` 和 `Python3.7.4` 上做过完整测试。
+- 实际上仅在 `ubuntu-latest`、`windows-latest`、`macOS-latest` 的 `Python 3.6, 3.7, 3.8` 上做过完整测试。
 - 欢迎提交其他版本使用情况到 [Issues](https://github.com/Ailln/en2an/issues) 中，期待你的反馈。
 - 如果你有 `Python 2` 的使用需求，可 Fork 代码自行修改。当然也欢迎提 PR，贡献自己代码给其他人。
 
@@ -66,9 +83,29 @@ print(en2an.__version__)
     3. 最后，不要忘记注明你使用的操作系统（比如 Windows 10）和 Python 版本（比如 Python 3.6.3）。
 3. 还可以参考 [issue 模版](https://github.com/Ailln/en2an/tree/master/.github/ISSUE_TEMPLATE)。
 
+## 6 开发相关
+
+### 6.1 开发进度
+
+本项目是用看板管理开发进度，请点击 [v0.1](https://github.com/Ailln/en2an/projects/1) 查看开发进度和计划事项。
+
+### 6.2 代码测试
+
+本地测试使用 [Anaconda](https://www.anaconda.com/) 的虚拟环境，测试方法如下。
+
+```bash
+# 安装 conda 环境
+conda create -n py369 python=3.6.9
+conda create -n py374 python=3.7.4
+
+# 执行测试
+bash scripts/local_test.sh
+```
+
 ## 7 许可证
 
 [![](https://award.dovolopor.com?lt=License&rt=MIT&rbc=green)](./LICENSE)
+[![](https://award.dovolopor.com?lt=Ailln's&rt=idea&lbc=lightgray&rbc=red&ltc=red)](https://github.com/Ailln/award)
 
 ## 8 交流
 

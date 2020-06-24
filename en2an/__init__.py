@@ -1,9 +1,11 @@
-from . import shell
-from . import version
+from .version import VERSION
+from .en2an import En2An
 
-__version__ = version.VERSION
+__version__ = VERSION
+
+en2an = En2An().en2an
 
 __all__ = [
-    "shell",
-    "version"
+    "__version__",
+    "en2an"
 ]

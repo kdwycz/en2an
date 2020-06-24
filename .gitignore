@@ -109,5 +109,9 @@ venv.bak/
 # setup
 files.txt
 
-# vscode
+.idea
+build
+en2an.egg-info
+dist
 .vscode
+.pytest_cache
