@@ -6,11 +6,13 @@ from .en2an import En2An
 class En2anTest(unittest.TestCase):
     def setUp(self) -> None:
         self.strict_data_dict = {
+            "zero": 0,
             "one": 1,
             "two": 2,
             "ten": 10,
             "eleven": 11,
             "twenty-one": 21,
+            "one hundred": 100,
             "two hundred and twenty": 220,
             "one hundred and twenty-three": 123,
             "two thousand six hundred and forty-eight": 2648,

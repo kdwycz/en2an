@@ -14,7 +14,7 @@
 
 ### 1.1 `英文数字` => `阿拉伯数字`
 
-### 1.2 `阿拉伯数字` => `英文数字`（开发中）
+### 1.2 `阿拉伯数字` => `英文数字`
 
 ### 1.3 句子转化（试验性功能）（开发中）
 
@@ -50,21 +50,37 @@ import en2an
 
 # 查看版本
 print(en2an.__version__)
-# 0.0.3
+# 0.0.5
 ```
 
 ### 3.1 `英文数字` => `阿拉伯数字`
 
-> 最大支持到`hundred trillion`（百兆），即`10**14`。
+> 最大支持到`hundred trillion`（百兆），即`10**15`。
 
 ```python
 import en2an
 
 # 在 strict 模式（默认）下，只有严格符合数字拼写的才可以进行转化
 output = en2an.en2an("one hundred and twenty-three")
-# or output = en2an.en2an("one hundred and twenty-three", "strict")
-print(output)
+# 或者
+output = en2an.en2an("one hundred and twenty-three", "strict")
+# output:
 # 123
+```
+
+### 3.2 `阿拉伯数字`=> `英文数字`     
+
+> 最大支持到`10**15`，即`hundred trillion`（百兆）。
+
+```python
+import en2an
+
+# 在 low 模式（默认）下，数字转化为小写的英文数字
+output = en2an.an2en("1234567890")
+# 或者
+output = en2an.an2en("1234567890", "low")
+# output:
+# one billion two hundred and thirty-four million five hundred and sixty-seven thousand eight hundred and ninety
 ```
 
 ## 4 版本支持
@@ -91,16 +107,13 @@ print(output)
 
 ### 6.2 代码测试
 
-本地测试使用 [Anaconda](https://www.anaconda.com/) 的虚拟环境，测试方法如下。
+本地测试使用 [Anaconda](https://www.anaconda.com/) 的虚拟环境，测试方法如下：
 
 ```bash
-# 安装 conda 环境
-conda create -n py369 python=3.6.9
-conda create -n py374 python=3.7.4
-
-# 执行测试
 bash scripts/local_test.sh
 ```
+
+线上测试使用 [GitHub Actions](https://github.com/Ailln/en2an/actions)。
 
 ## 7 许可证
 

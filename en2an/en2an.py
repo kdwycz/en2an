@@ -91,28 +91,26 @@ class En2An(object):
         return sign, check_data, "integer"
 
     def integer_convert(self, integer_data: list) -> int:
-        output_integer = 0
-        max_unit = 1
+        unit = 1
         temp_num = 0
         temp_unit = 1
+        output_integer = 0
         # 核心
         for index, en_num in enumerate(reversed(integer_data)):
             num = self.conf["number_unit"].get(en_num)
             # and 转化后是 None 应该去除
             if num is not None:
                 if num % 1000 == 0 and num != 0:
+                    output_integer += temp_num * unit
                     unit = num
-                    if unit > max_unit:
-                        output_integer += temp_num * max_unit
-                        max_unit = unit
-                        temp_num = 0
+                    temp_num = 0
                 else:
-                    if num < max_unit or max_unit == 1:
+                    if num < unit or unit == 1:
                         if num == 100:
                             temp_unit = num
                         else:
                             temp_num += int(num) * temp_unit
                             temp_unit = 1
 
-        output_integer += temp_num * max_unit
+        output_integer += temp_num * unit
         return output_integer

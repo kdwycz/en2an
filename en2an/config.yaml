@@ -32,3 +32,67 @@ number_unit:
   million: 1000000
   billion: 1000000000
   trillion: 1000000000000
+
+number_low:
+  - zero
+  - one
+  - two
+  - three
+  - four
+  - five
+  - six
+  - seven
+  - eight
+  - nine
+  - ten
+  - eleven
+  - twelve
+  - thirteen
+  - fourteen
+  - fifteen
+  - sixteen
+  - seventeen
+  - eighteen
+  - nineteen
+
+unit_ten_low:
+  - zero
+  - ten
+  - twenty
+  - thirty
+  - forty
+  - fifty
+  - sixty
+  - seventy
+  - eighty
+  - ninety
+
+unit_low:
+  - thousand
+  - million
+  - billion
+  - trillion
+
+
+number_up:
+  - zero
+  - one
+  - two
+  - three
+  - four
+  - five
+  - six
+  - seven
+  - eight
+  - nine
+  - eleven
+  - twelve
+  - thirteen
+  - fourteen
+  - fifteen
+  - sixteen
+  - seventeen
+  - eighteen
+  - nineteen
+
+max_len: 15
