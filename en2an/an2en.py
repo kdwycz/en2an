@@ -83,9 +83,9 @@ class An2En(object):
         return string_data
 
     def _integer_convert(self, integer_data: str, mode: str) -> str:
-        numeral_list = self.conf[f"number_{mode}"]
-        unit_ten_list = self.conf[f"unit_ten_{mode}"]
-        unit_list = self.conf[f"unit_{mode}"]
+        numeral_list = self.conf[f"number_low"]
+        unit_ten_list = self.conf[f"unit_ten_low"]
+        unit_list = self.conf[f"unit_low"]
         max_len = self.conf["max_len"]
 
         # 去除前面的 0，比如 007 => 7
@@ -128,7 +128,7 @@ class An2En(object):
                             en = numeral_list[10+data]
                     else:
                         # 10
-                        en = numeral_list[10 + data]
+                        en = numeral_list[10+data]
                     is_ten_unit = False
                 else:
                     if data != 0:
@@ -142,7 +142,7 @@ class An2En(object):
                             en = numeral_list[data]
                     else:
                         # 0
-                        if m < 0 and en == "":
+                        if m < 0 and output_en == "" and en == "":
                             en = numeral_list[data]
 
                 if m < 0:
@@ -151,5 +151,13 @@ class An2En(object):
                     output_en = output_en + en + " " + unit_list[m] + " "
 
                 en = ""
+
+        if output_en[-1] == " ":
+            output_en = output_en[:-1]
+
+        if mode == "up":
+            output_en = output_en.upper()
+        elif mode == "usd":
+            output_en = f"SAY US DOLLARS {output_en.upper()} ONLY"
 
         return output_en

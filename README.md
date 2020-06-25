@@ -14,7 +14,15 @@
 
 ### 1.1 `英文数字` => `阿拉伯数字`
 
+- 支持 `英文数字` => `阿拉伯数字`；
+- 支持 `大写英文数字` => `阿拉伯数字`；
+- 支持 `英文数字和阿拉伯数字` => `阿拉伯数字`；
+
 ### 1.2 `阿拉伯数字` => `英文数字`
+
+- 支持 `阿拉伯数字` => `英文数字`；
+- 支持 `阿拉伯数字` => `大写英文数字`；
+- 支持 `阿拉伯数字` => `大写美元（美点表达）`；
 
 ### 1.3 句子转化（试验性功能）（开发中）
 
@@ -50,7 +58,7 @@ import en2an
 
 # 查看版本
 print(en2an.__version__)
-# 0.0.5
+# 0.0.6
 ```
 
 ### 3.1 `英文数字` => `阿拉伯数字`
@@ -66,6 +74,17 @@ output = en2an.en2an("one hundred and twenty-three")
 output = en2an.en2an("one hundred and twenty-three", "strict")
 # output:
 # 123
+
+# 在 normal 模式下，还可以将 one two three 进行转化
+output = en2an.en2an("one two three", "normal")
+# output:
+# 123
+
+# 在 smart 模式下，还可以将混合拼写的 1百23 进行转化（暂不支持小数）
+output = en2an.en2an("1百23", "smart")
+# output:
+# 123
+
 ```
 
 ### 3.2 `阿拉伯数字`=> `英文数字`     
@@ -81,6 +100,16 @@ output = en2an.an2en("1234567890")
 output = en2an.an2en("1234567890", "low")
 # output:
 # one billion two hundred and thirty-four million five hundred and sixty-seven thousand eight hundred and ninety
+
+# 在 up 模式下，数字转化为大写的英文数字
+output = en2an.an2en("1234567890", "up")
+# output:
+# ONE BILLION TWO HUNDRED AND THIRTY-FOUR MILLION FIVE HUNDRED AND SIXTY-SEVEN THOUSAND EIGHT HUNDRED AND NINETY
+
+# 在 usd 模式下，数字转化为大写美元（美点表达）
+output = en2an.an2en("1234567890", "usd")
+# output:
+# SAY US DOLLARS ONE BILLION TWO HUNDRED AND THIRTY-FOUR MILLION FIVE HUNDRED AND SIXTY-SEVEN THOUSAND EIGHT HUNDRED AND NINETY ONLY
 ```
 
 ## 4 版本支持
