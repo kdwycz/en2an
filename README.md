@@ -80,14 +80,14 @@ output = en2an.en2an("one two three", "normal")
 # output:
 # 123
 
-# 在 smart 模式下，还可以将混合拼写的 1百23 进行转化（暂不支持小数）
-output = en2an.en2an("1百23", "smart")
+# 在 smart 模式下，还可以将混合拼写的 one hundred 23 进行转化（暂不支持小数）
+output = en2an.en2an("one hundred 23", "smart")
 # output:
 # 123
 
 ```
 
-### 3.2 `阿拉伯数字`=> `英文数字`     
+### 3.2 `阿拉伯数字`=> `英文数字`
 
 > 最大支持到`10**15`，即`hundred trillion`（百兆）。
 
