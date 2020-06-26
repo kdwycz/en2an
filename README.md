@@ -8,6 +8,10 @@
 
 📦 **`en2an`** 是一个快速转化 `英文数字` 和 `阿拉伯数字` 的工具包！
 
+[![](https://ailln.oss-cn-hangzhou.aliyuncs.com/github/en2an/en2an-site-v0.0.6.png)](https://www.dovolopor.com/en2an)
+
+🔗[点我访问 DEMO](https://www.dovolopor.com/en2an)
+
 > 🎈 该项目正在收集需求中，欢迎在 [Issue: 需求收集](https://github.com/Ailln/en2an/issues/1) 中与我们讨论！
 
 ## 1 功能
