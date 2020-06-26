@@ -26,7 +26,7 @@ class An2En(object):
             # 判断正负
             if inputs[0] == "-":
                 inputs = inputs[1:]
-                sign = "minus"
+                sign = "minus "
 
             # 切割整数部分和小数部分
             split_result = inputs.split(".")

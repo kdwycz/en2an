@@ -32,19 +32,21 @@
 
 ### 1.4 其他（开发中）
 
-- 支持小数
-- 支持负数
+- 支持`小数`
+- 支持`负数`
+- 支持`http api`。
 
 ## 2 安装
 
 > ⚠️注意：
-> 1. 仅支持 Python 的 3.6 以上版本；
-> 2. 请安装使用 en2an 的最新版本。
-
+> 1. 本地安装仅支持 Python 的 3.6 以上版本；
+> 2. 其他语言用户可以考虑使用 [http api](https://www.dovolopor.com/api/en2an) ；
+> 3. 请尽可能使用 en2an 的最新版本。
+>
 ### 2.1 使用 pip 安装
 
 ```shell
-pip install en2an
+pip install en2an -U
 ```
 
 ### 2.2 从代码库安装
@@ -89,6 +91,15 @@ output = en2an.en2an("one hundred 23", "smart")
 # output:
 # 123
 
+# 以上三种模式均支持负数
+output = en2an.en2an("minus one hundred and twenty-three")
+# output:
+# -123
+
+# strict 模式支持小数，normal 和 smart 模式暂不支持
+output = en2an.en2an("one point two three")
+# output:
+# 1.23
 ```
 
 ### 3.2 `阿拉伯数字`=> `英文数字`
@@ -114,6 +125,83 @@ output = en2an.an2en("1234567890", "up")
 output = en2an.an2en("1234567890", "usd")
 # output:
 # SAY US DOLLARS ONE BILLION TWO HUNDRED AND THIRTY-FOUR MILLION FIVE HUNDRED AND SIXTY-SEVEN THOUSAND EIGHT HUNDRED AND NINETY ONLY
+
+# 小数、负数暂不支持
+```
+
+### 3.3 句子转化（试验性功能）
+
+开发中...
+
+### 3.4 HTTP API
+
+主要为其他语言用户提供方便，当然 Python 用户也可以使用。
+
+#### Python
+
+```python
+import requests
+
+response = requests.get("https://api.dovolopor.com/v1/en2an",
+  params={
+    "text": "1234567890",
+    "function": "an2en",
+    "method": "low"
+  }
+)
+print(response.json())
+# { output: "one hundred and twenty-three", msg: "转化成功" }
+```
+
+#### Javascript
+
+```javascript
+const axios = require("axios")
+
+axios.get("https://api.dovolopor.com/v1/en2an", {
+  params: {
+    text: "123",
+    function: "an2en",
+    method: "low"
+  }
+}).then(
+  function (res) {
+    console.log(res.data);
+  }
+)
+// { output: "one hundred and twenty-three", msg: "转化成功" }
+```
+
+#### Go
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+    "net/url"
+)
+
+func main(){
+    params := url.Values{}
+    Url, err := url.Parse("https://api.dovolopor.com/v1/en2an")
+    if err != nil {
+        return
+    }
+    params.Set("text", "123")
+    params.Set("function", "an2en")
+    params.Set("method", "low")
+
+    Url.RawQuery = params.Encode()
+    urlPath := Url.String()
+    resp,err := http.Get(urlPath)
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}
+// { output: "one hundred and twenty-three", msg: "转化成功" }
 ```
 
 ## 4 版本支持
@@ -148,6 +236,26 @@ bash scripts/local_test.sh
 
 线上测试使用 [GitHub Actions](https://github.com/Ailln/en2an/actions)。
 
+- 测试版本：`v0.3.10`
+- 测试设备：`2.3 GHz 双核Intel Core i5 MacBook Pro`
+- 测试代码：[performance.py](https://github.com/Ailln/en2an/tree/master/en2an/performance.py)
+- 测试方法：
+
+    ```bash
+    pip install -r requirements_test.txt
+
+    python -m en2an.performance
+    ```
+
+- 测试结果：
+
+    | 序号 | 功能 | 执行次数 | 执行时间(平均) | 性能(次/秒)
+    | :-: | :-: | :-: | :-: | :-: |
+    |  1  | an2en | 10000 | 0.17 | **59k** |
+    |  2  | en2an | 10000 | 0.50 | **20k** |
+
+测试时，我使用的是最大长度的测试数据！因此，大多数情况下该库的性能会更好～
+
 ## 7 许可证
 
 [![](https://award.dovolopor.com?lt=License&rt=MIT&rbc=green)](./LICENSE)
@@ -156,3 +264,9 @@ bash scripts/local_test.sh
 ## 8 交流
 
 欢迎添加微信号：`Ailln_`，备注「en2an」，我邀请你进入交流群。
+
+## 9 参考
+
+- [如何发布自己的包到 pypi](https://www.v2ai.cn/2018/07/30/python/1-pypi/)
+- [Python 中的小陷阱](https://www.v2ai.cn/2019/01/01/python/4-python-trap/)
+- [中文数字转阿拉伯数字](https://github.com/Ailln/cn2an)
