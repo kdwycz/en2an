@@ -32,17 +32,18 @@
 
 ### 1.4 其他（开发中）
 
-- 支持`小数`
-- 支持`负数`
-- 支持`http api`。
+- 支持 `小数`
+- 支持 `负数`
+- 支持 `HTTP API`。
 
 ## 2 安装
 
-> ⚠️注意：
-> 1. 本地安装仅支持 Python 的 3.6 以上版本；
-> 2. 其他语言用户可以考虑使用 [http api](https://www.dovolopor.com/api/en2an) ；
-> 3. 请尽可能使用 en2an 的最新版本。
+> ⚠️ 注意：
 >
+> 1. 本地安装仅支持 Python 的 3.6 以上版本；
+> 2. 其他语言用户可以考虑使用 [HTTP API](https://www.dovolopor.com/api/en2an) ；
+> 3. 请尽可能使用 en2an 的最新版本。
+
 ### 2.1 使用 pip 安装
 
 ```shell
@@ -137,20 +138,44 @@ output = en2an.an2en("1234567890", "usd")
 
 主要为其他语言用户提供方便，当然 Python 用户也可以使用。
 
-#### Python
+#### Java
 
-```python
-import requests
+```java
+import java.net.URL;
+import java.net.HttpURLConnection;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-response = requests.get("https://api.dovolopor.com/v1/en2an",
-  params={
-    "text": "1234567890",
-    "function": "an2en",
-    "method": "low"
-  }
-)
-print(response.json())
-# { output: "one hundred and twenty-three", msg: "转化成功" }
+
+public class HttpGetExample {
+    public static void main(String[] args) throws Exception {
+        HttpGetExample http = new HttpGetExample();
+  
+        String url = "https://api.dovolopor.com/v1/en2an";
+        String params = "?text=123&function=an2en&method=low";
+        http.get(url + params);
+    }
+
+    private void get(String url) throws Exception {
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+        con.setRequestMethod("GET");
+        con.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        System.out.println(response.toString());
+    }
+}
+// { output: "one hundred and twenty-three", msg: "转化成功" }
 ```
 
 #### Javascript
@@ -204,6 +229,22 @@ func main(){
 // { output: "one hundred and twenty-three", msg: "转化成功" }
 ```
 
+#### Python
+
+```python
+import requests
+
+response = requests.get("https://api.dovolopor.com/v1/en2an",
+  params={
+    "text": "1234567890",
+    "function": "an2en",
+    "method": "low"
+  }
+)
+print(response.json())
+# { output: "one hundred and twenty-three", msg: "转化成功" }
+```
+
 ## 4 版本支持
 
 - 理论上支持 `Windows`、`MacOS`、`Ubuntu` 下的所有 `Python 3.6+` 的版本。
@@ -236,7 +277,9 @@ bash scripts/local_test.sh
 
 线上测试使用 [GitHub Actions](https://github.com/Ailln/en2an/actions)。
 
-- 测试版本：`v0.3.10`
+### 6.3 性能测试
+
+- 测试版本：`v0.0.6`
 - 测试设备：`2.3 GHz 双核Intel Core i5 MacBook Pro`
 - 测试代码：[performance.py](https://github.com/Ailln/en2an/tree/master/en2an/performance.py)
 - 测试方法：
