@@ -9,7 +9,7 @@ if py_version < (3, 6):
 
 setup(
     name="en2an",
-    version="0.0.6",
+    version="0.0.7",
     author="Ailln",
     author_email="kinggreenhall@gmail.com",
     url="https://github.com/Ailln/en2an",

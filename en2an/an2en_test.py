@@ -21,6 +21,7 @@ class En2anTest(unittest.TestCase):
             10000: "ten thousand",
             2250062: "two million two hundred and fifty thousand sixty-two",
             100000: "one hundred thousand",
+            210000: "two hundred and ten thousand",
             202202202: "two hundred and two million two hundred and two thousand two hundred and two",
             202202202202202: "two hundred and two trillion two hundred and two billion two hundred and two million two hundred and two thousand two hundred and two",
             # 0.01: "zero point zero one",

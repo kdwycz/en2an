@@ -120,14 +120,10 @@ class An2En(object):
                     is_zero = True
             elif n == 0:
                 if is_ten_unit:
-                    if data != 0:
-                        if en != "":
-                            en = en + " and " + numeral_list[10+data]
-                        else:
-                            # 11-19
-                            en = numeral_list[10+data]
+                    if en != "":
+                        en = en + " and " + numeral_list[10+data]
                     else:
-                        # 10
+                        # 11-19
                         en = numeral_list[10+data]
                     is_ten_unit = False
                 else:
