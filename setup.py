@@ -2,10 +2,6 @@ import sys
 from setuptools import setup
 from setuptools import find_packages
 
-py_version = sys.version_info[:2]
-
-if py_version < (3, 6):
-    raise RuntimeError('en2an requires Python 3.6 or later')
 
 setup(
     name="en2an",
@@ -21,6 +17,7 @@ setup(
     long_description_content_type="text/markdown",
     zip_safe=False,
     classifiers=[
+        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
